@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: daronk
+  api_key: '421256787671628'
+  api_secret: _ufbyD1MMq036fWyVBb7pSgqaLk
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: daronk
+  api_key: '421256787671628'
+  api_secret: _ufbyD1MMq036fWyVBb7pSgqaLk
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: daronk
+  api_key: '421256787671628'
+  api_secret: _ufbyD1MMq036fWyVBb7pSgqaLk
+  enhance_image_tag: true
+  static_image_support: false
