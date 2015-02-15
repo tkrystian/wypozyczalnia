@@ -1,4 +1,12 @@
 <p id="notice"><%= notice %></p>
+<p>
+  <% @orders.each do |order| %>
+  <strong>Tytuł filmu</strong>
+  <%= order.movie.title %>
+</p>
+      <p>Cena zamówienia:
+      <%= order.movie.price %></p>
+      <td><%= link_to 'Usuń zamówienie', order, method: :delete %><br><br>
+      <% end %>
+Suma:<%= session[:orders_sum] %>zł
 
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>

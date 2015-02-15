@@ -1,10 +1,18 @@
 Rails.application.routes.draw do
 
+  resources :reviews
 
   root 'welcome#index'
+  resources :movies
+
+  resources :orders, except: [:new, :show]
+  get '/orders/new/:id' => 'orders#new', as: :buy_movie
+  get '/orders/cart/:id' => 'orders#show', as: :show_orders
 
   resources :orders
-  devise_for :users
+
+  devise_for :users, :controllers => { registrations: 'registrations' }
+
   resources :users
 
 

@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
-  before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_user!, only: [:new]
+  before_action :set_order, only: [ :edit, :update, :destroy]
 
   # GET /orders
   # GET /orders.json
@@ -10,11 +11,15 @@ class OrdersController < ApplicationController
   # GET /orders/1
   # GET /orders/1.json
   def show
+
+    @user = User.find(current_user.id)
+    @orders = @user.orders
   end
 
   # GET /orders/new
   def new
     @order = Order.new
+    @movie = Movie.find(params[:id])
   end
 
   # GET /orders/1/edit
@@ -28,7 +33,7 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.save
-        format.html { redirect_to @order, notice: 'Order was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new }
@@ -56,7 +61,7 @@ class OrdersController < ApplicationController
   def destroy
     @order.destroy
     respond_to do |format|
-      format.html { redirect_to orders_url, notice: 'Order was successfully destroyed.' }
+      format.html { redirect_to show_orders_path(current_user.id), notice: 'Order was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +74,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params[:order]
+      params[:order].permit(:price, :user_id, :movie_id)
     end
 end
