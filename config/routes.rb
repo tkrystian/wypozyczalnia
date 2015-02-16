@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   resources :orders, except: [:new, :show]
   get '/orders/new/:id' => 'orders#new', as: :buy_movie
   get '/orders/cart/:id' => 'orders#show', as: :show_orders
-
+  get '/cart/finalize/:sum' => 'orders#finalize', as: :finalize_order
+  get '/cart/pay/:id' => 'orders#delegate_transaction', as: :delegate_order
   resources :orders
 
   devise_for :users, :controllers => { registrations: 'registrations' }

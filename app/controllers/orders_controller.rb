@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_filter :authenticate_user!, only: [:new]
+  before_filter :authenticate_user!, only: [:new, :show, :finalize]
   before_action :set_order, only: [ :edit, :update, :destroy]
 
   # GET /orders
@@ -8,12 +8,45 @@ class OrdersController < ApplicationController
     @orders = Order.all
   end
 
+  def finalize
+    @user = User.find(current_user.id)
+    @payment = params[:sum]
+
+
+  end
+
+  def watch
+    user = User.find(current_user.id)
+    orders = user.orders.where("status = true")
+    movies_ids = []
+    orders.each do |order|
+      movies_ids << order.movie_id
+    end
+    @movies = Movie.find(movies_ids)
+  end
+  def delegate_transaction
+    user = User.find(current_user.id)
+    orders = user.orders
+    orders.each do |order|
+      order.update_attribute(:status, true)
+    end
+    user.movies.delete_all
+    session[:orders_count] = 0
+    session[:orders_sum] = 0
+
+
+
+    redirect_to show_orders_path, notice: 'Zapłaciłeś za filmy, gratulacje!'
+  end
+
   # GET /orders/1
   # GET /orders/1.json
   def show
 
     @user = User.find(current_user.id)
     @orders = @user.orders
+
+    session[:orders_sum] = @user.movies.sum("price")
   end
 
   # GET /orders/new
@@ -59,6 +92,9 @@ class OrdersController < ApplicationController
   # DELETE /orders/1
   # DELETE /orders/1.json
   def destroy
+
+    session[:orders_count] -= 1
+
     @order.destroy
     respond_to do |format|
       format.html { redirect_to show_orders_path(current_user.id), notice: 'Order was successfully destroyed.' }

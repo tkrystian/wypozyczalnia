@@ -1,6 +1,8 @@
 <p id="notice"><%= notice %></p>
 <p>
+
   <% @orders.each do |order| %>
+      <% if order.status == false %>
   <strong>Tytuł filmu</strong>
   <%= order.movie.title %>
 </p>
@@ -8,5 +10,12 @@
       <%= order.movie.price %></p>
       <td><%= link_to 'Usuń zamówienie', order, method: :delete %><br><br>
       <% end %>
-Suma:<%= session[:orders_sum] %>zł
+  <% end %>
+  <td><%= link_to 'finalizuj zamówienie', finalize_order_path(session[:orders_sum]) if session[:orders_sum] > 0 %><br>
+<% if session[:orders_sum] > 0%>
+    Suma:<%= session[:orders_sum] %>zł
+<% else %>
+    Pusty koszyk :(
+
+<% end %>
 

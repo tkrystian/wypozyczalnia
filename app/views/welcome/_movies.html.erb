@@ -1,0 +1,61 @@
+<div class="row">
+  <h1>Najlepiej oceniane filmy</h1>
+
+
+<% @movies.each do |movie| %>
+      <div class="col-md-2">
+
+        <%= link_to movie do %>
+        <%= image_tag movie.photo, size:'180' %>
+      <b><%= movie.title %></b><br>
+            <% movie.rating.times do %>
+          <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+            <% end %>
+
+      </div>
+        <%end%>
+      <% end %>
+
+  </div>
+<div class="row">
+  <h1>Najczęściej zamawiane</h1>
+
+
+  <% @most_ordered.each do |movie| %>
+      <div class="col-md-2">
+
+        <%= link_to movie do %>
+            <%= image_tag movie.photo, size:'180' %>
+            <b><%= movie.title %></b><br>
+
+            <% movie.rating.times do %>
+                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+            <% end %>
+
+
+            </div>
+        <%end%>
+  <% end %>
+
+</div>
+<div class="row">
+  <h1>Najczęściej komentowane</h1>
+
+
+  <% @most_reviewd.each do |movie| %>
+      <div class="col-md-2">
+
+        <%= link_to movie do %>
+            <%= image_tag movie.photo, size:'180' %>
+            <b><%= movie.title %></b><br>
+
+            <% movie.rating.times do %>
+                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+            <% end %>
+
+
+            </div>
+        <%end%>
+  <% end %>
+
+</div>

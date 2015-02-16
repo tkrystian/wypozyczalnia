@@ -26,7 +26,7 @@
 .image-box a {
   float:left;
 }
-li>a>.glyphicon {
+li>a>.glyphicon.logged {
   top: 8px;
 
 }
@@ -60,4 +60,12 @@ a > b {
 
 .glyphicon-star {
   color: #ECEC02;
+}
+.main-template a.btn{
+  background-color: rgba(82,100,174,1);
+  color: #ffffff;
+}
+.btn:not(.btn-link):not(.btn-flat)
+{
+  background-color: rgba(82,100,174,1);
 }

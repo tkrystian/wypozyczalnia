@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+<%= image_tag @movie.photo, size:'280' %>
+<p>
+  <strong>Tytuł:</strong>
+  <%= @movie.title %>
+</p>
+
+
+
+<p>
+  <strong>Ocena:</strong>
+  <%= @movie.rating %>
+</p>
+<p>
+  <strong>Cena:</strong>
+  <%= @movie.price %>
+</p>
+
+<p>
+  <strong>Obsada:</strong>
+  <%= simple_format @movie.cast.tr(",","\n") %>
+</p>
+
+<% video_tag (@movie.video.url) %>
+<video width="320" height="240" controls="controls">
+  <source src="<%= @movie.video.url %>"/>
+  Your browser does not support the video tag.
+</video>
+
+<%= link_to 'Złóż zamówienie', buy_movie_path(@movie.id), class: "btn btn-lg" %>
+
+<%= render 'reviews/form' %>
