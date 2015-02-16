@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_filter :authenticate_user!, only: [:new, :show, :finalize]
+  before_filter :authenticate_user!, only: [:new, :show, :finalize, :watch]
   before_action :set_order, only: [ :edit, :update, :destroy]
 
   # GET /orders
@@ -18,6 +18,17 @@ class OrdersController < ApplicationController
   def watch
     user = User.find(current_user.id)
     orders = user.orders.where("status = true")
+    movies_list = nil
+    orders.each do |order|
+      movies_list = order.movie_id if order.movie_id == params[:movie]
+    end
+    @movie = Movie.find(params[:movie])
+
+  end
+
+  def watchlist
+    user = User.find(current_user.id)
+    orders = user.orders.where("status = true")
     movies_ids = []
     orders.each do |order|
       movies_ids << order.movie_id
@@ -30,7 +41,6 @@ class OrdersController < ApplicationController
     orders.each do |order|
       order.update_attribute(:status, true)
     end
-    user.movies.delete_all
     session[:orders_count] = 0
     session[:orders_sum] = 0
 

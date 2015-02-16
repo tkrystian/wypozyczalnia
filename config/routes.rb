@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get '/orders/cart/:id' => 'orders#show', as: :show_orders
   get '/cart/finalize/:sum' => 'orders#finalize', as: :finalize_order
   get '/cart/pay/:id' => 'orders#delegate_transaction', as: :delegate_order
+  get '/watchlist' => 'orders#watchlist', as: :watch
+  get '/theater/:movie' => 'orders#watch', as: :theater
   resources :orders
 
   devise_for :users, :controllers => { registrations: 'registrations' }

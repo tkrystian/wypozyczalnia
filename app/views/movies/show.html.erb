@@ -21,12 +21,7 @@
   <%= simple_format @movie.cast.tr(",","\n") %>
 </p>
 
-<% video_tag (@movie.video.url) %>
-<video width="320" height="240" controls="controls">
-  <source src="<%= @movie.video.url %>"/>
-  Your browser does not support the video tag.
-</video>
 
-<%= link_to 'Złóż zamówienie', buy_movie_path(@movie.id), class: "btn btn-lg" %>
+<%= link_to 'Złóż zamówienie', buy_movie_path(@movie.id), class: "btn- btn-lg" %>
 
 <%= render 'reviews/form' %>

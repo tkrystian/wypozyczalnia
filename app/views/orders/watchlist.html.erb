@@ -1,0 +1,5 @@
+<% @movies.each do |movie| %>
+    <%= link_to movie.title, theater_path(movie.id) %> <br>
+<% end %>
+
+<div class="movie_window"></div>

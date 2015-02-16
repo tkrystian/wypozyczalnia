@@ -6,7 +6,7 @@ class WelcomeController < ApplicationController
 
     if current_user
       @user = User.find(current_user.id)
-      orders_count = @user.orders.count
+      orders_count = @user.orders.where("status = false").count
       session[:orders_count] = orders_count
       session[:orders_sum] = @user.movies.sum("price")
 
