@@ -48,6 +48,7 @@ group :development, :test do
   gem 'aws-sdk', '< 2.0'
   gem 'videojs_rails'
   gem 'figaro'
+  gem 'rails_12factor', group: :production
 
 end
 
