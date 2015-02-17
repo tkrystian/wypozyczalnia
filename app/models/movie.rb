@@ -5,7 +5,7 @@ class Movie < ActiveRecord::Base
                                     :path => '/:class/:attachment/:id_partition/:style/:filename',
                                     :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"]
 
-  validates_attachment_content_typec :video,  :url =>':s3_domain_url',
+  validates_attachment_content_type :video,  :url =>':s3_domain_url',
                                      :path => '/:class/:attachment/:id_partition/:style/:filename',
                                      :content_type => ["video/mp4"]
   has_many :orders
