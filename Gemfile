@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-
+ruby '2.2.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 # Use postgresql as the database for Active Record
@@ -35,7 +35,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem 'bootstrap-material-design'
 
-group :development, :test do
+group :development, :test, :production do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
@@ -48,7 +48,7 @@ group :development, :test do
   gem 'aws-sdk', '< 2.0'
   gem 'videojs_rails'
   gem 'figaro'
-  gem 'rails_12factor', group: :production
+
 
 end
 
