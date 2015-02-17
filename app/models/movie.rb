@@ -9,5 +9,5 @@ class Movie < ActiveRecord::Base
 
   has_attached_file :video,  :url =>':s3_domain_url',
                     :path => '/:class/:attachment/:id_partition/:style/:filename'
-                    :content_type => ["video/mp4""]
+                    :content_type => ["video/mp4"]
 end
