@@ -56,7 +56,7 @@ class OrdersController < ApplicationController
     @user = User.find(current_user.id)
     @orders = @user.orders
 
-    session[:orders_sum] = @user.movies.sum("price")
+    session[:orders_sum] = @user.orders.where("status = false").sum("sum")
   end
 
   # GET /orders/new
@@ -73,6 +73,7 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(order_params)
+
 
     respond_to do |format|
       if @order.save
@@ -120,6 +121,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params[:order].permit(:price, :user_id, :movie_id)
+      params[:order].permit(:price, :user_id, :movie_id, :sum)
     end
 end
