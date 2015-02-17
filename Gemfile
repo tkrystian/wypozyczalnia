@@ -49,6 +49,5 @@ group :development, :test, :production do
   gem 'videojs_rails'
   gem 'figaro'
 
-
 end
 
