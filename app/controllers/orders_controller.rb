@@ -28,6 +28,14 @@ class OrdersController < ApplicationController
 
   def watchlist
     user = User.find(current_user.id)
+    orders = user.orders
+    if params[:status] == "OK"
+      orders.each do |order|
+        order.update_attribute(:status, true)
+      end
+      session[:orders_count] = 0
+      session[:orders_sum] = 0
+    end
     orders = user.orders.where("status = true")
     movies_ids = []
     orders.each do |order|
@@ -35,14 +43,13 @@ class OrdersController < ApplicationController
     end
     @movies = Movie.find(movies_ids)
   end
+
   def delegate_transaction
+
     user = User.find(current_user.id)
     orders = user.orders
-    orders.each do |order|
-      order.update_attribute(:status, true)
-    end
-    session[:orders_count] = 0
-    session[:orders_sum] = 0
+
+
 
 
 

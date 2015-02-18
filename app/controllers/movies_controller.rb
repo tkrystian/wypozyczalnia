@@ -12,6 +12,12 @@ class MoviesController < ApplicationController
   def show
     @review = Review.new
   end
+  def genres
+
+  end
+  def show_genres
+    @movies = Movie.all.where("genre = #{params[:genre]}")
+  end
 
   # GET /movies/new
   def new
@@ -70,6 +76,6 @@ class MoviesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def movie_params
-      params.require(:movie).permit(:title, :description, :rating, :cast, :photo, :price, :video)
+      params.require(:movie).permit(:title, :description, :rating, :cast, :photo, :price, :video, :genre)
     end
 end

@@ -6,12 +6,15 @@ Rails.application.routes.draw do
   resources :movies
 
   resources :orders, except: [:new, :show]
+  get '/genres' => 'movies#genres', as: :genres
+  get '/movielist' => 'movies#show_genres'
   get '/orders/new/:id' => 'orders#new', as: :buy_movie
   get '/orders/cart/:id' => 'orders#show', as: :show_orders
   get '/cart/finalize/:sum' => 'orders#finalize', as: :finalize_order
   get '/cart/pay/:id' => 'orders#delegate_transaction', as: :delegate_order
   get '/watchlist' => 'orders#watchlist', as: :watch
   get '/theater/:movie' => 'orders#watch', as: :theater
+
   resources :orders
 
   devise_for :users, :controllers => { registrations: 'registrations' }

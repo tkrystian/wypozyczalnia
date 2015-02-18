@@ -1,3 +1,5 @@
+<%=h '<div class="alert alert-dismissable alert-info">Transakcja przebiegła pomyślnie!</div>'.html_safe if params[:status] == "OK" %>
+<%=h '<div class="alert alert-dismissable alert-warning">Coś poszło nie tak z płatnością!</div>'.html_safe if params[:status] == "FAIL" %>
 <% @movies.each do |movie| %>
     <%= link_to movie.title, theater_path(movie.id) %> <br>
 <% end %>

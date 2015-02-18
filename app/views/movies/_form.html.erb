@@ -1,5 +1,5 @@
 <%= form_for(@movie) do |f| %>
-
+<div class="form-group">
   <% if @movie.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@movie.errors.count, "error") %> prohibited this movie from being saved:</h2>
@@ -14,28 +14,32 @@
 
   <div class="field">
     <%= f.label :title %><br>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, class:"form-control" %>
   </div>
   <div class="field">
     <%= f.label :description %><br>
-    <%= f.text_area :description %>
+    <%= f.text_area :description, class:"form-control" %>
   </div>
   <div class="field">
     <%= f.label :rating %><br>
-    <%= f.number_field :rating %>
+    <%= f.number_field :rating, class:"form-control" %>
   </div>
       <div class="field">
         <%= f.label :price %><br>
-        <%= f.text_field :price %>
+        <%= f.text_field :price, class:"form-control" %>
       </div>
   <div class="field">
     <%= f.label :cast %><br>
-    <%= f.text_area :cast %>
+    <%= f.text_area :cast, class:"form-control" %>
   </div>
 
     <div class="field">
       <%= f.label :okladka %><br>
-    <%= f.file_field :photo, class:'file' %>
+    <%= f.file_field :photo, class:'file', class:"form-control" %>
+    </div>
+    <div class="field">
+      <%= f.label :gatunek %><br>
+      <%= f.select(:genre, options_for_select([['Horror','horror'],['Komedia','komedia'],['Fantasy','fantasy'],['SciFi','scifi']]), class:"form-control") %>
     </div>
     <div class="field">
       <%= f.label :film %><br>
@@ -46,4 +50,5 @@
     <%= f.submit %>
   </div>
         </div>
+    </div>
 <% end %>

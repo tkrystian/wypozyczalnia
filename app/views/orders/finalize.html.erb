@@ -1,2 +1,20 @@
 Masz zapłacić <%= @payment %>zł
-<%= link_to 'Płacę', delegate_order_path(current_user.id) %>
+<br>
+
+
+
+<form action="https://ssl.dotpay.pl/" method="POST">
+
+  <input type="hidden" name="id" value="72890" />
+  <input type="hidden" name="pin" value="1234567887654321" />
+  <input type="hidden" name="typ" value="0" />
+  <input type="hidden" name="URL" value="https://young-everglades-3876.herokuapp.com/watchlist" />
+  <input type="hidden" name="kwota" value="<%= @payment %>" size="5" readonly />
+  <input type="hidden" name="opis" value="Płatność użytkownika <%= @user.email %>" />
+  <input type="hidden" name="blokuj" value="1" />
+  <select name="kanal">
+
+    <option value="20">Testowy</option>
+  </select>
+  <input type="submit" name="Zapłać / Pay" value="Zapłać / Pay" />
+</form>
