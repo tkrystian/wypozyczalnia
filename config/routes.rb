@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get '/cart/finalize/:sum' => 'orders#finalize', as: :finalize_order
   get '/cart/pay/:id' => 'orders#delegate_transaction', as: :delegate_order
   get '/watchlist' => 'orders#watchlist', as: :watch
-  post '/watchlist' => 'orders#watchlist', as: :watch
+  post '/watchlistpayu' => 'orders#watchlist'
   get '/theater/:movie' => 'orders#watch', as: :theater
 
   resources :orders
