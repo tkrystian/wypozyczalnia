@@ -1,4 +1,4 @@
-<div class="authform">
+
   <%= form_for(@review) do |f| %>
 
     <%= f.hidden_field :movie_id, value: @movie.id %>
@@ -6,11 +6,14 @@
     <%= f.hidden_field :user_id, value: current_user.id if current_user%>
   </div>
   <div class="field">
-    <%= f.label :Opinion %><br>
+    <%= f.label :Opinia %><br>
     <%= f.text_area :description %>
   </div>
+      <div class="field">
+        <%= f.label :Ocena %><br>
+        <%= f.number_field :rating %>
+      </div>
   <div class="actions">
-    <%= f.submit 'Post review' %>
+    <%= f.submit 'Zrecenzuj' %>
   </div>
 <% end %>
-</div>

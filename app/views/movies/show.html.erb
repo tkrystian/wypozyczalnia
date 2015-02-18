@@ -1,31 +1,52 @@
 <p id="notice"><%= notice %></p>
-<%= image_tag @movie.photo.url, size:'280' %>
-<p>
+<div class="row">
+
+
+  <div class="col-md-5-offset">
+    <%= image_tag @movie.photo.url, size:'280' %>
+    </div>
+  <div class="col-md-4-offset-1">
   <strong>Tytuł:</strong>
-  <%= @movie.title %>
-</p>
+  <%= @movie.title %>,
 
-
-
-<p>
   <strong>Ocena:</strong>
-  <%= @movie.rating %>
-</p>
-<p>
+
+  <% @movie.rating.times do %>
+        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+        <% end %>,
+
   <strong>Cena:</strong>
-  <%= @movie.price %>
-</p>
-<p>
+  <%= @movie.price %> zł,
+
   <strong>Gatunek:</strong>
-  <%= @movie.genre %>
-</p>
+  <%= @movie.genre %><br>
 
-<p>
-  <strong>Obsada:</strong>
+  <strong>Obsada:</strong><br>
   <%= simple_format @movie.cast.tr(",","\n") %>
-</p>
+
+  </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3-offset">
+    <strong>Opis:</strong><br>
+    <%= @movie.description %>
+  </div>
+    <%= link_to 'Złóż zamówienie', buy_movie_path(@movie.id), class: "btn btn-lg" %>
+    </div>
 
 
-<%= link_to 'Złóż zamówienie', buy_movie_path(@movie.id), class: "btn- btn-lg" %>
-
+<div class="row">
+  <div class="col-md-3-offset">
 <%= render 'reviews/form' %>
+    Oceny użytkowników:<br>
+    <% @user_reviews.each do |review| %>
+
+        <%= image_tag avatar_url(review.user) %>
+        <%= review.description %>
+        <% review.rating.times do %>
+            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+        <% end %>
+        </div></div>
+    <% end %>
+
+ 

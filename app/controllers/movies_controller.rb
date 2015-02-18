@@ -11,6 +11,7 @@ class MoviesController < ApplicationController
   # GET /movies/1.json
   def show
     @review = Review.new
+    @user_reviews = @movie.reviews
   end
   def genres
 
