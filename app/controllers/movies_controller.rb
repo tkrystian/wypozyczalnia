@@ -16,7 +16,7 @@ class MoviesController < ApplicationController
 
   end
   def show_genres
-    @movies = Movie.all.where("genre = #{params[:genre]}")
+    @movies = Movie.all.where(genre: params[:genre])
   end
 
   # GET /movies/new
