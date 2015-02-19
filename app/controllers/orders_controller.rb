@@ -41,7 +41,7 @@ class OrdersController < ApplicationController
     orders.each do |order|
       movies_ids << order.movie_id
     end
-    @movies = Movie.find(movies_ids)
+    @movies = Movie.where(id: movies_ids)
   end
 
   def delegate_transaction
