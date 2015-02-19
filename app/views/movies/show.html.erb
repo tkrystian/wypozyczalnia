@@ -12,7 +12,7 @@
   <strong>Ocena:</strong>
 
   <% @movie.rating.times do %>
-        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+        <span class="star" aria-hidden="true"></span>
         <% end %>,
 
   <strong>Cena:</strong>
@@ -38,15 +38,19 @@
 <div class="row">
   <div class="col-md-3-offset">
 <%= render 'reviews/form' %>
+    </div></div>
     Oceny użytkowników:<br>
-    <% @user_reviews.each do |review| %>
 
+    <% @user_reviews.each do |review| %>
+    <div class="row">
+      <div class="col-md-3-offset">
         <%= image_tag avatar_url(review.user) %>
         <%= review.description %>
         <% review.rating.times do %>
-            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+            <span class="star" aria-hidden="true"></span>
         <% end %>
         </div></div>
     <% end %>
 
 
+</div>

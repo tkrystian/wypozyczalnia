@@ -4,7 +4,7 @@
     <%= f.hidden_field :movie_id, value: @movie.id %>
 
     <%= f.hidden_field :user_id, value: current_user.id if current_user%>
-  </div>
+
   <div class="field">
     <%= f.label :Opinia %><br>
     <%= f.text_area :description %>

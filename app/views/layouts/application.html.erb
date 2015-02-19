@@ -38,12 +38,13 @@
           </ul>
         </li>
         <li>
-          <%= link_to show_orders_path(current_user.id) do %><span class="glyphicon glyphicon-shopping-cart logged" aria-hidden="true">
-            <span class="badge">
-          <%= session[:orders_count] if session[:orders_count] %>
+          <%= link_to show_orders_path(current_user.id) do %><span class="cart logged" aria-hidden="true">
+  <%  if session[:orders_count] %>
+        </span> <span class="badge">
+                <%= session[:orders_count] %>
             </span>
-        </span>
         <% end %>
+          <% end %>
         </li>
       </ul>
 
@@ -53,7 +54,7 @@
             <li><a href="<%= new_user_registration_path %>">Zarejestruj się!</a></li>
             <li><a href="<%= new_user_session_path %>">Zaloguj się</a></li>
       <li>
-        <%= link_to show_orders_path(0) do %><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true">
+        <%= link_to show_orders_path(0) do %><span class="cart" aria-hidden="true">
         </span> </li>
               </ul><% end %>
 

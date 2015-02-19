@@ -68,12 +68,27 @@ a > b {
 .btn:not(.btn-link):not(.btn-flat)
 {
   background-color: rgba(82,100,174,1);
+  color:white;
 }
+
 
 .form-group {
   text-align: left;
 }
 
-#title {
+.cart {
 
+  background-image: url('koszyk.png');
+  width: 15px;
+  height: 16px;
+  background-size:16px;
+display: inline-block;
+  margin-top:5px;
+}
+.star {
+  background-image: url('star.png');
+  display:inline-block;
+  background-size:15px;
+  width: 15px;
+  height: 15px;
 }
